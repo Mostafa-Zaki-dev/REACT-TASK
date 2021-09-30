@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useEffect, useState} from "react";
 import { TodoForm } from "./components/todo-form";
 import { TodoList } from "./components/todo-list";
 import { TodoResults } from "./components/todo-results";
@@ -39,11 +39,15 @@ const todosList = [
 ];
 
 export const App = () => {
-  const [todos, setTodos] = React.useState([]);
+  const [todos, setTodos] = useState([]);
+
+  useEffect(()=> {
+    setTodos(todosList)
+  }, [])
 
   return (
     <div className="root">
-      <TodosContext.Provider value={{ todos }}>
+      <TodosContext.Provider value={{ todos, setTodos }}>
         <TodoList />
         <TodoResults />
         <TodoForm />

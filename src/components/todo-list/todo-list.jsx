@@ -8,6 +8,8 @@ export const TodoList = () => {
 
   const handleDelete = (id) => {
     // Fix an ability to delete task
+    const filteredTodos = todos.filter(todo => todo.id !== id)
+    setTodos(filteredTodos)
   };
 
   const toggleCheck = (id) => {
