@@ -1,14 +1,15 @@
-import * as React from 'react';
-import { TodosContext } from '../../todo-context';
+import React, {useState} from 'react';
+import { useTodos } from '../../todo-context';
 import './todo-form.scss';
 
 export const TodoForm = () => {
-  const { todos, setTodos } = React.useContext(TodosContext);
-  const [task, setTask] = React.useState('');
+  const { todos, setTodos } = useTodos();
+  const [task, setTask] = useState('');
 
   const handleAddTodo = () => {
     // Fin an ability to add new task
     let newId = 1 ;
+    // To avoid duplicate id numbers
     todos.length !== 0 ? newId += todos[todos.length-1].id : newId = 0;
     const newTodo = {
       id: newId,
